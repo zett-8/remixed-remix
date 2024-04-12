@@ -13,7 +13,7 @@ export default tsEslint.config(
   eslintJS.configs.recommended,
   ...tsEslint.configs.recommended,
   {
-    ignores: ['!**/.server', '!**/.client', 'build', '**/dist', '.wrangler', 'public/widget.js'],
+    ignores: ['!**/.server', '!**/.client', 'build', '.wrangler', 'public'],
   },
   {
     languageOptions: {
