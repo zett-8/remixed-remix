@@ -28,9 +28,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install dependencies in child project
-        run: pnpm install
-
       - name: Build the project
         run: pnpm build
 
