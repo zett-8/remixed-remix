@@ -30,7 +30,6 @@ jobs:
 
       - name: Install dependencies in child project
         run: pnpm install
-        working-directory: ./widget
 
       - name: Build the project
         run: pnpm build
