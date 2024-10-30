@@ -20,7 +20,7 @@
     "@remix-run/cloudflare": "^2.8.1",
     "@remix-run/cloudflare-pages": "^2.8.1",
     "@remix-run/react": "^2.8.1",
-    "drizzle-orm": "^0.35.0",
+    "drizzle-orm": "^0.36.0",
     "isbot": "^5.0.0",
     "miniflare": "^3.20231030.4",
     "react": "^18.2.0",
