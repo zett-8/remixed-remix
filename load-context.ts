@@ -1,5 +1,5 @@
 import { type PlatformProxy } from 'wrangler'
-import { SessionStorage, createCookie, createWorkersKVSessionStorage } from '@remix-run/cloudflare'
+import { SessionStorage, createCookie, createWorkersKVSessionStorage, AppLoadContext } from '@remix-run/cloudflare'
 import { drizzle, type DrizzleD1Database } from 'drizzle-orm/d1'
 
 type Cloudflare = Omit<PlatformProxy<Env>, 'dispose'>
@@ -18,7 +18,7 @@ declare module '@remix-run/cloudflare' {
   }
 }
 
-export function getLoadContext({ context }: { request: Request; context: LoadContext }) {
+export const getLoadContext = ({ context }: { request: Request; context: LoadContext }): AppLoadContext => {
   const SECRET = context.cloudflare.env.SESSION_SECRET
 
   if (!SECRET) {
