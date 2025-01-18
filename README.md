@@ -1,63 +1,77 @@
-![Convertio Image](https://github.com/zett-8/remixed-remix/assets/33055097/096c0cfc-e680-4c48-9d79-a2aa53e77ebb)
+# Welcome to React Router!
 
-# 💿 Remixed Remix
+A modern, production-ready template for building full-stack React applications using React Router.
 
-Remixed Remix is your web project's stellar launchpad. A production-ready template designed for seamless deployment on Cloudflare Pages.
+## Features
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+- 🚀 Server-side rendering
+- ⚡️ Hot Module Replacement (HMR)
+- 📦 Asset bundling and optimization
+- 🔄 Data loading and mutations
+- 🔒 TypeScript by default
+- 🎉 TailwindCSS for styling
+- 📖 [React Router docs](https://reactrouter.com/)
 
-## Setups
+## Getting Started
 
-- Cloudflare Pages (D1, KV)
-- User Authentication (remix-auth + remix-auth-google)
-- Tailwind
-- Drizzle
-- Zod
-- ESLint with flat config
-- Vite
-- Typescript
+### Installation
 
-## Typegen
+Install the dependencies:
 
-Generate types for your Cloudflare bindings in `wrangler.toml`:
-
-```sh
-npm run typegen
+```bash
+npm install
 ```
 
-You will need to rerun typegen whenever you make changes to `wrangler.toml`.
+### Development
 
-## Development
+Run an initial database migration:
 
-Run the Vite dev server:
+```bash
+npm run db:migrate
+```
 
-```sh
+Start the development server with HMR:
+
+```bash
 npm run dev
 ```
 
-To run Wrangler:
+Your application will be available at `http://localhost:5173`.
 
-```sh
+## Building for Production
+
+Create a production build:
+
+```bash
 npm run build
-npm run start
 ```
 
 ## Deployment
 
-> [!WARNING]  
-> Cloudflare does _not_ use `wrangler.toml` to configure deployment bindings.
-> You **MUST** [configure deployment bindings manually in the Cloudflare dashboard][bindings].
+Deployment is done using the Wrangler CLI.
 
-First, build your app for production:
+To deploy directly to production:
 
 ```sh
-npm run build
+npx wrangler deploy
 ```
 
-Then, deploy your app to Cloudflare Pages:
+To deploy a preview URL:
 
 ```sh
-npm run deploy
+npx wrangler versions upload
 ```
 
-[bindings]: https://developers.cloudflare.com/pages/functions/bindings/
+You can then promote a version to production after verification or roll it out progressively.
+
+```sh
+npx wrangler versions deploy
+```
+
+## Styling
+
+This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+
+---
+
+Built with ❤️ using React Router.

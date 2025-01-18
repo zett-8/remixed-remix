@@ -1,10 +1,16 @@
-node_modules
+.DS_Store
+/node_modules/
+*.tsbuildinfo
 
-.cache
-build
-dist
-.env
+# React Router
+/.react-router/
+/build/
 
+# Cloudflare
+.mf
 .wrangler
 
+# Dev
 .dev.vars
+.env
+
