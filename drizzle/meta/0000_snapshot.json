@@ -32,9 +32,7 @@
       "indexes": {
         "guestBook_email_unique": {
           "name": "guestBook_email_unique",
-          "columns": [
-            "email"
-          ],
+          "columns": ["email"],
           "isUnique": true
         }
       },

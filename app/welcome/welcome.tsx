@@ -1,7 +1,7 @@
-import { Form, useNavigation } from "react-router";
+import { Form, useNavigation } from 'react-router'
 
-import logoDark from "./logo-dark.svg";
-import logoLight from "./logo-light.svg";
+import logoDark from './logo-dark.svg'
+import logoLight from './logo-light.svg'
 
 export function Welcome({
   guestBook,
@@ -9,36 +9,26 @@ export function Welcome({
   message,
 }: {
   guestBook: {
-    name: string;
-    id: number;
-  }[];
-  guestBookError?: string;
-  message: string;
+    name: string
+    id: number
+  }[]
+  guestBookError?: string
+  message: string
 }) {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   return (
-    <main className="flex items-center justify-center pt-16 pb-4">
-      <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
+    <main className="flex items-center justify-center pb-4 pt-16">
+      <div className="flex min-h-0 flex-1 flex-col items-center gap-16">
         <header className="flex flex-col items-center gap-9">
           <div className="w-[500px] max-w-[100vw] p-4">
-            <img
-              src={logoLight}
-              alt="React Router"
-              className="block w-full dark:hidden"
-            />
-            <img
-              src={logoDark}
-              alt="React Router"
-              className="hidden w-full dark:block"
-            />
+            <img src={logoLight} alt="React Router" className="block w-full dark:hidden" />
+            <img src={logoDark} alt="React Router" className="hidden w-full dark:block" />
           </div>
         </header>
-        <div className="max-w-[300px] w-full space-y-6 px-4">
-          <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-4">
-            <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
-              What&apos;s next?
-            </p>
+        <div className="w-full max-w-[300px] space-y-6 px-4">
+          <nav className="space-y-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
+            <p className="text-center leading-6 text-gray-700 dark:text-gray-200">What&apos;s next?</p>
             <ul>
               {resources.map(({ href, text, icon }) => (
                 <li key={href}>
@@ -56,18 +46,18 @@ export function Welcome({
               <li className="self-stretch p-3 leading-normal">{message}</li>
             </ul>
           </nav>
-          <section className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-4">
+          <section className="space-y-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
             <Form
               method="post"
-              className="space-y-4 w-full max-w-lg"
+              className="w-full max-w-lg space-y-4"
               onSubmit={(event) => {
-                if (navigation.state === "submitting") {
-                  event.preventDefault();
+                if (navigation.state === 'submitting') {
+                  event.preventDefault()
                 }
-                const form = event.currentTarget;
+                const form = event.currentTarget
                 requestAnimationFrame(() => {
-                  form.reset();
-                });
+                  form.reset()
+                })
               }}
             >
               <input
@@ -75,7 +65,7 @@ export function Welcome({
                 name="name"
                 placeholder="Name"
                 required
-                className="w-full dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 dark:focus:ring-blue-500 h-10 px-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-blue-500"
+                className="h-10 w-full rounded-lg border border-gray-200 px-3 focus:ring-1 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:focus:ring-blue-500"
               />
               <input
                 aria-label="Email"
@@ -83,20 +73,16 @@ export function Welcome({
                 type="email"
                 placeholder="your@email.com"
                 required
-                className="w-full dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 dark:focus:ring-blue-500 h-10 px-3 rounded-lg border border-gray-200 focus:ring-1 focus:ring-blue-500"
+                className="h-10 w-full rounded-lg border border-gray-200 px-3 focus:ring-1 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:focus:ring-blue-500"
               />
               <button
                 type="submit"
-                disabled={navigation.state === "submitting"}
-                className="w-full h-10 px-3 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+                disabled={navigation.state === 'submitting'}
+                className="h-10 w-full rounded-lg bg-blue-500 px-3 text-white hover:bg-blue-600"
               >
                 Sign Guest Book
               </button>
-              {guestBookError && (
-                <p className="text-red-500 dark:text-red-400">
-                  {guestBookError}
-                </p>
-              )}
+              {guestBookError && <p className="text-red-500 dark:text-red-400">{guestBookError}</p>}
             </Form>
             <ul className="text-center">
               {<li className="p-3">{message}</li>}
@@ -110,13 +96,13 @@ export function Welcome({
         </div>
       </div>
     </main>
-  );
+  )
 }
 
 const resources = [
   {
-    href: "https://reactrouter.com/docs",
-    text: "React Router Docs",
+    href: 'https://reactrouter.com/docs',
+    text: 'React Router Docs',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -135,8 +121,8 @@ const resources = [
     ),
   },
   {
-    href: "https://rmx.as/discord",
-    text: "Join Discord",
+    href: 'https://rmx.as/discord',
+    text: 'Join Discord',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -153,4 +139,4 @@ const resources = [
       </svg>
     ),
   },
-];
+]
