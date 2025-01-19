@@ -13,4 +13,4 @@
 # Dev
 .dev.vars
 .env
-
+.vscode
