@@ -1,10 +1,7 @@
-// eslint-disable-next-line
 import { database } from '~/database/context'
-// eslint-disable-next-line
 import * as schema from '~/database/schema'
 
 import type { Route } from './+types/home'
-// eslint-disable-next-line
 import { Welcome } from '@/welcome/welcome'
 
 export function meta() {

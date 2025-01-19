@@ -1,9 +1,7 @@
 import { drizzle } from 'drizzle-orm/d1'
 import { createRequestHandler } from 'react-router'
 
-// eslint-disable-next-line
 import { DatabaseContext } from '~/database/context'
-// eslint-disable-next-line
 import * as schema from '~/database/schema'
 
 interface CloudflareEnvironment {
