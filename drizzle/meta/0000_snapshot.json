@@ -1,25 +1,26 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "008ee181-36ed-4cc3-b593-481f13e2254a",
+  "id": "bff1c315-f02b-4a11-8fac-e9e14d6a5588",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "guestBook": {
-      "name": "guestBook",
+    "users": {
+      "name": "users",
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": true
+          "autoincrement": false
         },
-        "name": {
-          "name": "name",
+        "created_at": {
+          "name": "created_at",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(CURRENT_TIMESTAMP)"
         },
         "email": {
           "name": "email",
@@ -27,12 +28,42 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "image": {
+          "name": "image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "provider": {
+          "name": "provider",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
       "indexes": {
-        "guestBook_email_unique": {
-          "name": "guestBook_email_unique",
-          "columns": ["email"],
+        "users_email_unique": {
+          "name": "users_email_unique",
+          "columns": [
+            "email"
+          ],
           "isUnique": true
         }
       },

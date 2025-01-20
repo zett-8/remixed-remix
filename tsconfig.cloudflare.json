@@ -6,7 +6,10 @@
     "app/**/.server/**/*",
     "app/**/.client/**/*",
     "database/**/*",
-    "workers/**/*"
+    "workers/**/*",
+    "load-context.ts",
+    "worker-configuration.d.ts",
+    "vite.config.ts"
   ],
   "compilerOptions": {
     "composite": true,
@@ -23,6 +26,7 @@
       "@/*": ["./app/*"],
       "~/*": ["./*"]
     },
+    "outDir": "./.dist",
     "esModuleInterop": true,
     "resolveJsonModule": true
   }
