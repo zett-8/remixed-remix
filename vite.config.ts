@@ -26,14 +26,7 @@ export default defineConfig(({ isSsrBuild }) => ({
       conditions: ['workerd', 'browser'],
     },
     optimizeDeps: {
-      include: [
-        'react',
-        'react/jsx-runtime',
-        'react/jsx-dev-runtime',
-        'react-dom',
-        'react-dom/server',
-        'react-router',
-      ],
+      include: ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'react-dom', 'react-dom/server', 'react-router'],
     },
   },
   plugins: [
