@@ -1,6 +1,8 @@
-# Welcome to React Router!
+![Convertio Image](https://github.com/zett-8/remixed-remix/assets/33055097/096c0cfc-e680-4c48-9d79-a2aa53e77ebb)
 
-A modern, production-ready template for building full-stack React applications using React Router.
+# 💿 Remixed Remix
+Remixed Remix is your web app's stellar launchpad improved from the original Remix [template](https://github.com/remix-run/react-router-templates/tree/main/cloudflare-d1). A production-ready template designed for seamless deployment on Cloudflare Pages.  
+📖 See the [Remix docs](https://remix.run/docs) and the [React Router docs](https://reactrouter.com/) for details on supported features.
 
 ## Features
 
@@ -12,6 +14,17 @@ A modern, production-ready template for building full-stack React applications u
 - 🎉 TailwindCSS for styling
 - 📖 [React Router docs](https://reactrouter.com/)
 
+## Setups
+
+- Cloudflare Pages (D1)
+- User Authentication (remix-auth + remix-auth-google)
+- Tailwind
+- Drizzle
+- Zod
+- ESLint with flat config
+- Vite
+- Typescript
+
 ## Getting Started
 
 ### Installation
@@ -19,21 +32,33 @@ A modern, production-ready template for building full-stack React applications u
 Install the dependencies:
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Development
+Generate types:
+
+```bash
+pnpm run typegen
+```
 
 Run an initial database migration:
 
 ```bash
-npm run db:migrate
+pnpm run db:migrate
 ```
 
 Start the development server with HMR:
 
 ```bash
-npm run dev
+pnpm run dev
+```
+
+To run Wrangler:
+
+```sh
+npm run build
+npm run start
 ```
 
 Your application will be available at `http://localhost:5173`.
@@ -43,7 +68,7 @@ Your application will be available at `http://localhost:5173`.
 Create a production build:
 
 ```bash
-npm run build
+pnpm run build
 ```
 
 ## Deployment
