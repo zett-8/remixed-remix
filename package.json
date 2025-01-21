@@ -20,7 +20,7 @@
     "@coji/remix-auth-google": "^4.1.0",
     "@react-router/node": "^7.1.3",
     "@react-router/serve": "^7.1.3",
-    "drizzle-orm": "~0.36.3",
+    "drizzle-orm": "~0.38.0",
     "isbot": "^5.1.17",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
