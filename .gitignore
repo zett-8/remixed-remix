@@ -1,10 +1,19 @@
-node_modules
+.DS_Store
+/node_modules/
 
-.cache
-build
-dist
-.env
+# TypeScript
+.dist
+*.tsbuildinfo
 
+# React Router
+/.react-router/
+/build/
+
+# Cloudflare
+.mf
 .wrangler
 
+# Dev
 .dev.vars
+.env
+.vscode

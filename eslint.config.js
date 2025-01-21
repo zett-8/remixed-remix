@@ -11,9 +11,9 @@ const compat = new FlatCompat()
 
 export default tsEslint.config(
   eslintJS.configs.recommended,
-  ...tsEslint.configs.recommended,
+  tsEslint.configs.recommended,
   {
-    ignores: ['!**/.server', '!**/.client', 'build', '.wrangler', 'public'],
+    ignores: ['build', '.wrangler', 'public', '.react-router'],
   },
   {
     languageOptions: {
@@ -59,15 +59,25 @@ export default tsEslint.config(
     files: ['**/*.{ts,tsx}'],
     extends: [...compat.config(importPlugin.configs.recommended)],
     settings: {
-      'import/internal-regex': '^~/',
+      'import/internal-regex': ['^~/', '^@/'],
       'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: ['./tsconfig.json', './tsconfig.cloudflare.json', './tsconfig.node.json'],
+        },
         node: {
           extensions: ['.ts', '.tsx'],
         },
-        typescript: {
-          alwaysTryTypes: true,
-        },
       },
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
     },
   }
 )
