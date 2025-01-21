@@ -30,7 +30,7 @@ export const getAuthenticator = (context: AppLoadContext): Authenticator<User> =
       const [newUser] = await context.db
         .insert(users)
         .values({
-          userID: profile.id,
+          userId: profile.id,
           email: profile.emails[0].value || '',
           password: '',
           name: profile.displayName,

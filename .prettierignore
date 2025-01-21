@@ -7,3 +7,4 @@ migrations
 .wrangler
 .idea
 node_modules
+drizzle

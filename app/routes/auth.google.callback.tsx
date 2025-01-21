@@ -8,8 +8,6 @@ export async function loader({ request, context }: Route.LoaderArgs) {
 
   const user = await authenticator.authenticate('google', request)
 
-  console.log('callback loader user ', user)
-
   if (!user) {
     return redirect('/login')
   }

@@ -16,7 +16,7 @@ export default function ProtectedRoute() {
       <div>
         <h2>Login User Information</h2>
         <ul>
-          <li>ID: {user.userID}</li>
+          <li>ID: {user.userId}</li>
           <li>User: {user.name}</li>
           <li>Email: {user.email}</li>
           <li>createdAt: {user.createdAt}</li>
