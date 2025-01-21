@@ -1,6 +1,7 @@
 ![Convertio Image](https://github.com/zett-8/remixed-remix/assets/33055097/096c0cfc-e680-4c48-9d79-a2aa53e77ebb)
 
 # 💿 Remixed Remix
+
 Remixed Remix is your web app's stellar launchpad improved from the original Remix [template](https://github.com/remix-run/react-router-templates/tree/main/cloudflare-d1).  
 A production-ready template designed for seamless deployment on Cloudflare Pages.  
 📖 See the [Remix docs](https://remix.run/docs) and the [React Router docs](https://reactrouter.com/) for details on supported features.
@@ -37,6 +38,7 @@ pnpm install
 ```
 
 ### Development
+
 Generate types:
 
 ```bash
