@@ -33,7 +33,6 @@ export default defineConfig(({ isSsrBuild }) => ({
         'react-dom',
         'react-dom/server',
         'react-router',
-        'remix-auth-oauth2',
       ],
     },
   },
