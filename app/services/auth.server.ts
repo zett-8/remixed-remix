@@ -12,7 +12,7 @@ export const getAuthenticator = (context: AppLoadContext): Authenticator<User> =
   const CLIENT_URL = context.env.CLIENT_URL
 
   if (!(SESSION_SECRET && GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET && CLIENT_URL)) {
-    throw new Error('SESSION_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, CLIENT_URL are not defined')
+    throw new Error('SESSION_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, CLIENT_URL are not all defined')
   }
 
   const googleStrategy = new GoogleStrategy<User>(
@@ -23,12 +23,9 @@ export const getAuthenticator = (context: AppLoadContext): Authenticator<User> =
     },
     async ({ tokens }) => {
       const profile = await GoogleStrategy.userProfile(tokens)
+      const [user] = await context.db.select().from(users).where(eq(users.email, profile.emails[0].value)).limit(1)
 
-      const [user] = await context.db.select().from(users).where(eq(users.userID, profile.emails[0].value)).limit(1)
-
-      if (user) {
-        return user
-      }
+      if (user) return user
 
       const [newUser] = await context.db
         .insert(users)
@@ -71,11 +68,23 @@ export const getAuthSessionHandlers = async (context: AppLoadContext, request: R
     })
   }
 
-  return { getSessionUser, setSessionUser }
+  const deleteSession = async (): Promise<Headers> => {
+    return new Headers({
+      'Set-Cookie': await context.sessionStorage.destroySession(session),
+    })
+  }
+
+  return { getSessionUser, setSessionUser, deleteSession }
 }
 
-export const authRequired = async (context: AppLoadContext, request: Request) => {
-  const { getSessionUser, setSessionUser } = await getAuthSessionHandlers(context, request)
+export const logout = async (context: AppLoadContext, request: Request) => {
+  const { deleteSession } = await getAuthSessionHandlers(context, request)
+  const headers = await deleteSession()
+  return redirect('/', { headers })
+}
+
+export const authRequired = async (context: AppLoadContext, request: Request): Promise<User> => {
+  const { getSessionUser } = await getAuthSessionHandlers(context, request)
   const sessionUser = await getSessionUser()
 
   if (sessionUser) {
@@ -83,19 +92,5 @@ export const authRequired = async (context: AppLoadContext, request: Request) =>
     return sessionUser
   }
 
-  const authenticator = getAuthenticator(context)
-
-  try {
-    const authenticatedUser = await authenticator.authenticate('google', request)
-
-    if (authenticatedUser) {
-      console.log('authenticatedUser detected - ', authenticatedUser)
-      await setSessionUser(authenticatedUser)
-      return authenticatedUser
-    }
-  } catch (error) {
-    console.error('Authentication failed:', error)
-  }
-
-  return redirect('/login')
+  throw redirect('/login')
 }

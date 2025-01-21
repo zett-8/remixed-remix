@@ -1,7 +1,7 @@
 import type { Route } from './+types/auth.google'
 import { getAuthenticator } from '@/services/auth.server'
 
-export function action({ request, context }: Route.ActionArgs) {
+export async function action({ request, context }: Route.ActionArgs) {
   const authenticator = getAuthenticator(context)
-  return authenticator.authenticate('google', request)
+  return await authenticator.authenticate('google', request)
 }

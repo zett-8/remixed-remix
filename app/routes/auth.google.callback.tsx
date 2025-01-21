@@ -1,11 +1,12 @@
 import { redirect } from 'react-router'
 import type { Route } from './+types/auth.google.callback'
-import { getAuthenticator } from '@/services/auth.server'
+import { getAuthenticator, getAuthSessionHandlers } from '@/services/auth.server'
 
-export function loader({ request, context }: Route.LoaderArgs) {
+export async function loader({ request, context }: Route.LoaderArgs) {
   const authenticator = getAuthenticator(context)
+  const { setSessionUser } = await getAuthSessionHandlers(context, request)
 
-  const user = authenticator.authenticate('google', request)
+  const user = await authenticator.authenticate('google', request)
 
   console.log('callback loader user ', user)
 
@@ -13,5 +14,7 @@ export function loader({ request, context }: Route.LoaderArgs) {
     return redirect('/login')
   }
 
-  return redirect('/protected-route')
+  const headers = await setSessionUser(user)
+
+  return redirect('/protected-route', { headers })
 }
