@@ -4,7 +4,7 @@ export default function Login() {
   return (
     <div>
       <Form method="post" action="/auth/google">
-        <button type="submit">Googleでログイン</button>
+        <button type="submit">Login with Google</button>
       </Form>
     </div>
   )
