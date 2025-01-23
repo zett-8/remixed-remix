@@ -1,8 +1,7 @@
 import { cloudflareDevProxy } from '@react-router/dev/vite/cloudflare'
 import { reactRouter } from '@react-router/dev/vite'
-import autoprefixer from 'autoprefixer'
-import tailwindcss from 'tailwindcss'
-import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
+import { defineConfig, type PluginOption } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { getLoadContext } from './load-context'
 
@@ -13,11 +12,6 @@ export default defineConfig(({ isSsrBuild }) => ({
           input: './workers/app.ts',
         }
       : undefined,
-  },
-  css: {
-    postcss: {
-      plugins: [tailwindcss, autoprefixer],
-    },
   },
   ssr: {
     target: 'webworker',
@@ -38,6 +32,7 @@ export default defineConfig(({ isSsrBuild }) => ({
     },
   },
   plugins: [
+    tailwindcss(),
     cloudflareDevProxy({
       getLoadContext({ context }) {
         // @ts-expect-error - context types are unaware of the proxied values
@@ -46,5 +41,5 @@ export default defineConfig(({ isSsrBuild }) => ({
     }),
     reactRouter(),
     tsconfigPaths(),
-  ],
+  ] as PluginOption[],
 }))
