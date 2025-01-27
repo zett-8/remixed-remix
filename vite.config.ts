@@ -20,15 +20,7 @@ export default defineConfig(({ isSsrBuild }) => ({
       conditions: ['workerd', 'browser'],
     },
     optimizeDeps: {
-      include: [
-        'react',
-        'react/jsx-runtime',
-        'react/jsx-dev-runtime',
-        'react-dom',
-        'react-dom/server',
-        'react-router',
-        'remix-auth-oauth2',
-      ],
+      include: ['react', 'react/jsx-runtime', 'react/jsx-dev-runtime', 'react-dom', 'react-dom/server', 'react-router'],
     },
   },
   plugins: [
