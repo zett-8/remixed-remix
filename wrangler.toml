@@ -1,0 +1,9 @@
+workers_dev = true
+name = "your-project-name"
+compatibility_date = "2024-11-18"
+compatibility_flags = ["nodejs_compat"]
+main = "./build/server/index.js"
+assets = { directory = "./build/client/" }
+
+[vars]
+TEST = "abc"
