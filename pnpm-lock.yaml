@@ -17,6 +17,12 @@ importers:
       drizzle-orm:
         specifier: ~0.40.0
         version: 0.40.0(@cloudflare/workers-types@4.20250303.0)(gel@2.0.0)
+      hono:
+        specifier: ^4.7.4
+        version: 4.7.4
+      hono-react-router-adapter:
+        specifier: ^0.6.2
+        version: 0.6.2(hono@4.7.4)(miniflare@3.20250224.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2)(wrangler@3.114.0(@cloudflare/workers-types@4.20250303.0))
       isbot:
         specifier: ^5.1.17
         version: 5.1.23
@@ -39,6 +45,9 @@ importers:
       '@eslint/js':
         specifier: ^9.18.0
         version: 9.21.0
+      '@hono/vite-dev-server':
+        specifier: ^0.19.0
+        version: 0.19.0(hono@4.7.4)(miniflare@3.20250224.0)(wrangler@3.114.0(@cloudflare/workers-types@4.20250303.0))
       '@react-router/dev':
         specifier: ^7.1.3
         version: 7.2.0(@react-router/serve@7.2.0(react-router@7.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.2))(@types/node@22.13.9)(jiti@2.4.2)(lightningcss@1.29.1)(react-router@7.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.2)(vite@6.2.0(@types/node@22.13.9)(jiti@2.4.2)(lightningcss@1.29.1))(wrangler@3.114.0(@cloudflare/workers-types@4.20250303.0))
@@ -912,6 +921,38 @@ packages:
   '@fastify/busboy@2.1.1':
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
+
+  '@hono/node-server@1.13.8':
+    resolution: {integrity: sha512-fsn8ucecsAXUoVxrUil0m13kOEq4mkX4/4QozCqmY+HpGfKl74OYSn8JcMA8GnG0ClfdRI4/ZSeG7zhFaVg+wg==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      hono: ^4
+
+  '@hono/vite-dev-server@0.18.3':
+    resolution: {integrity: sha512-JztypLmq6qtQ3OAcz5vDzwXYBBymLztSbfDuNf4XTWkfppLjf6DHvYHtQZ5idOfNhUzdnbYY7/6QAKlVk6G3QQ==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      hono: '*'
+      miniflare: '*'
+      wrangler: '*'
+    peerDependenciesMeta:
+      miniflare:
+        optional: true
+      wrangler:
+        optional: true
+
+  '@hono/vite-dev-server@0.19.0':
+    resolution: {integrity: sha512-myMc4Nm0nFQSPaeE6I/a1ODyDR5KpQ4EHodX4Tu/7qlB31GfUemhUH/WsO91HJjDEpRRpsT4Zbg+PleMlpTljw==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      hono: '*'
+      miniflare: '*'
+      wrangler: '*'
+    peerDependenciesMeta:
+      miniflare:
+        optional: true
+      wrangler:
+        optional: true
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2243,6 +2284,16 @@ packages:
   hasown@2.0.2:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
+
+  hono-react-router-adapter@0.6.2:
+    resolution: {integrity: sha512-DBmLpwLOS2GI9sS8Na1/xjpVknp/Pqu/pcN4nlVt9/LL6hH0awcaY88FjSB8su31u0EU2M7CZbAAYBrXBZwEHg==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      hono: '*'
+
+  hono@4.7.4:
+    resolution: {integrity: sha512-Pst8FuGqz3L7tFF+u9Pu70eI0xa5S3LPUmrNd5Jm8nTHze9FxLTK9Kaj5g/k4UcwuJSXTP65SyHOPLrffpcAJg==}
+    engines: {node: '>=16.9.0'}
 
   hosted-git-info@6.1.3:
     resolution: {integrity: sha512-HVJyzUrLIL1c0QmviVh5E8VGyUS7xCFPS6yydaVd1UegW+ibV/CohqTH9MkOLDp5o+rb82DMo77PTuc9F/8GKw==}
@@ -4085,6 +4136,28 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
+  '@hono/node-server@1.13.8(hono@4.7.4)':
+    dependencies:
+      hono: 4.7.4
+
+  '@hono/vite-dev-server@0.18.3(hono@4.7.4)(miniflare@3.20250224.0)(wrangler@3.114.0(@cloudflare/workers-types@4.20250303.0))':
+    dependencies:
+      '@hono/node-server': 1.13.8(hono@4.7.4)
+      hono: 4.7.4
+      minimatch: 9.0.5
+    optionalDependencies:
+      miniflare: 3.20250224.0
+      wrangler: 3.114.0(@cloudflare/workers-types@4.20250303.0)
+
+  '@hono/vite-dev-server@0.19.0(hono@4.7.4)(miniflare@3.20250224.0)(wrangler@3.114.0(@cloudflare/workers-types@4.20250303.0))':
+    dependencies:
+      '@hono/node-server': 1.13.8(hono@4.7.4)
+      hono: 4.7.4
+      minimatch: 9.0.5
+    optionalDependencies:
+      miniflare: 3.20250224.0
+      wrangler: 3.114.0(@cloudflare/workers-types@4.20250303.0)
+
   '@humanfs/core@0.19.1': {}
 
   '@humanfs/node@0.16.6':
@@ -5601,6 +5674,23 @@ snapshots:
   hasown@2.0.2:
     dependencies:
       function-bind: 1.1.2
+
+  hono-react-router-adapter@0.6.2(hono@4.7.4)(miniflare@3.20250224.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.8.2)(wrangler@3.114.0(@cloudflare/workers-types@4.20250303.0)):
+    dependencies:
+      '@hono/vite-dev-server': 0.18.3(hono@4.7.4)(miniflare@3.20250224.0)(wrangler@3.114.0(@cloudflare/workers-types@4.20250303.0))
+      hono: 4.7.4
+      react-router: 7.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+    optionalDependencies:
+      '@hono/node-server': 1.13.8(hono@4.7.4)
+      '@react-router/node': 7.2.0(react-router@7.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.2)
+    transitivePeerDependencies:
+      - miniflare
+      - react
+      - react-dom
+      - typescript
+      - wrangler
+
+  hono@4.7.4: {}
 
   hosted-git-info@6.1.3:
     dependencies:

@@ -3,6 +3,8 @@ import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig, type PluginOption } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import adapter from '@hono/vite-dev-server/cloudflare'
+import serverAdapter from 'hono-react-router-adapter/vite'
 import { getLoadContext } from './load-context'
 
 export default defineConfig(({ isSsrBuild }) => ({
@@ -32,6 +34,7 @@ export default defineConfig(({ isSsrBuild }) => ({
       },
     }),
     reactRouter(),
+    serverAdapter({ adapter, getLoadContext, entry: './app/server/index.ts' }), 
     tsconfigPaths(),
   ] as PluginOption[],
 }))
