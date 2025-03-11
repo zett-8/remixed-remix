@@ -1,8 +1,12 @@
 import type { Route } from './+types/home'
-import { Link } from 'react-router'
+import { Link, data } from 'react-router'
 
 export function meta(_: Route.MetaArgs) {
   return [{ title: 'New React Router App' }, { name: 'description', content: 'Welcome to React Router!' }]
+}
+
+export const loader = async (_: Route.LoaderArgs) => {
+  return data({})
 }
 
 export default function Home(_: Route.ComponentProps) {

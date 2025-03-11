@@ -1,19 +1,21 @@
 import { type AppLoadContext, redirect } from 'react-router'
 import { Authenticator } from 'remix-auth'
+import { getContext } from 'hono/context-storage'
 import { GoogleStrategy } from '@coji/remix-auth-google'
 import { eq } from 'drizzle-orm/sql/expressions/conditions'
-
 import { users, type User } from '~/database/schema/user'
 
-export const getAuthenticator = (context: AppLoadContext): Authenticator<User> => {
-  const SESSION_SECRET = context.env.SESSION_SECRET
-  const GOOGLE_CLIENT_ID = context.env.GOOGLE_CLIENT_ID
-  const GOOGLE_CLIENT_SECRET = context.env.GOOGLE_CLIENT_SECRET
-  const CLIENT_URL = context.env.CLIENT_URL
+export const getAuthenticator = (request: Request, context: AppLoadContext): Authenticator<User> => {
+  const SESSION_SECRET = context.cloudflare.env.SESSION_SECRET
+  const GOOGLE_CLIENT_ID = context.cloudflare.env.GOOGLE_CLIENT_ID
+  const GOOGLE_CLIENT_SECRET = context.cloudflare.env.GOOGLE_CLIENT_SECRET
+  const CLIENT_URL = context.cloudflare.env.CLIENT_URL
 
   if (!(SESSION_SECRET && GOOGLE_CLIENT_ID && GOOGLE_CLIENT_SECRET && CLIENT_URL)) {
     throw new Error('SESSION_SECRET, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, CLIENT_URL are not all defined')
   }
+
+  const db = getContext<HonoENV>().var.db
 
   const googleStrategy = new GoogleStrategy<User>(
     {
@@ -23,11 +25,11 @@ export const getAuthenticator = (context: AppLoadContext): Authenticator<User> =
     },
     async ({ tokens }) => {
       const profile = await GoogleStrategy.userProfile(tokens)
-      const [user] = await context.db.select().from(users).where(eq(users.email, profile.emails[0].value)).limit(1)
+      const [user] = await db.select().from(users).where(eq(users.email, profile.emails[0].value)).limit(1)
 
       if (user) return user
 
-      const [newUser] = await context.db
+      const [newUser] = await db
         .insert(users)
         .values({
           userId: profile.id,

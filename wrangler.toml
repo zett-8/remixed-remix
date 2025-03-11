@@ -1,12 +1,15 @@
 workers_dev = true
-name = "my-worker"
+name = "remixed-remix"
 compatibility_date = "2024-11-18"
 compatibility_flags = ["nodejs_compat"]
-main = "./build/server/index.js"
+main = "./worker.ts"
 assets = { directory = "./build/client/" }
 
 [[d1_databases]]
 binding = "DB"
-database_name = "your-database-name"
-database_id = "your-database-id"
+database_name = "<your-database-name>"
+database_id = "<your-database-id>"
 migrations_dir = "drizzle"
+
+[observability.logs]
+enabled = true
