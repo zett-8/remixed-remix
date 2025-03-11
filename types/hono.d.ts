@@ -10,6 +10,7 @@ declare global {
     }
     Variables: {
       db: DrizzleD1Database<typeof schema>
+      userId: string
     }
   }
 }

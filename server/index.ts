@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
 import { contextStorage, getContext } from 'hono/context-storage'
 import * as schema from '../database/schema/index'
 import { drizzle } from 'drizzle-orm/d1'
@@ -18,14 +19,27 @@ app.use(async (c, next) => {
   c.res.headers.set('X-Response-Time', `${end - start}`)
 })
 
+app.use('*', clerkMiddleware())
+
+app.use('/dashboard/*', async (c, next) => {
+  const auth = getAuth(c)
+
+  if (!auth || !auth.userId) {
+    return c.redirect('/')
+  }
+
+  c.set('userId', auth.userId)
+  return next()
+})
+
 app.get('/api/healthcheck', (c) => {
   return c.json({ status: 'ok' })
 })
 
 app.get('/api/users', async (c) => {
-  const db = getContext<HonoENV>().var.db
-  const users = await db.select().from(schema.users)
-  return c.json(users)
+  const _db = getContext<HonoENV>().var.db
+  // Do something with the db
+  return c.json({})
 })
 
 export default app
