@@ -1,23 +1,18 @@
-import { cloudflareDevProxy } from '@react-router/dev/vite/cloudflare'
 import { reactRouter } from '@react-router/dev/vite'
-import tailwindcss from '@tailwindcss/vite'
+import { cloudflareDevProxy } from '@react-router/dev/vite/cloudflare'
+import adapter from '@hono/vite-dev-server/cloudflare'
+import serverAdapter from 'hono-react-router-adapter/vite'
 import { defineConfig, type PluginOption } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import tailwindcss from '@tailwindcss/vite'
 import { getLoadContext } from './load-context'
 
-export default defineConfig(({ isSsrBuild }) => ({
-  build: {
-    rollupOptions: isSsrBuild
-      ? {
-          input: './workers/app.ts',
-        }
-      : undefined,
-  },
+export default defineConfig((_) => ({
   ssr: {
     target: 'webworker',
-    noExternal: true,
     resolve: {
-      conditions: ['workerd', 'browser'],
+      conditions: ['workerd', 'worker', 'browser'],
+      externalConditions: ['workerd', 'worker'],
     },
     optimizeDeps: {
       include: [
@@ -33,13 +28,9 @@ export default defineConfig(({ isSsrBuild }) => ({
   },
   plugins: [
     tailwindcss(),
-    cloudflareDevProxy({
-      getLoadContext({ context }) {
-        // @ts-expect-error - context types are unaware of the proxied values
-        return getLoadContext(context.cloudflare)
-      },
-    }),
+    cloudflareDevProxy(),
     reactRouter(),
+    serverAdapter({ adapter, getLoadContext, entry: './server/index.ts' }),
     tsconfigPaths(),
   ] as PluginOption[],
 }))
