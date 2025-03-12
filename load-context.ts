@@ -1,26 +1,30 @@
-import type { ExecutionContext } from '@cloudflare/workers-types'
 import { type AppLoadContext } from 'react-router'
+import type { Context } from 'hono'
+import type { PlatformProxy } from 'wrangler'
 
-declare global {
-  // eslint-disable-next-line
-  interface CloudflareEnvironment extends Env {}
-}
+type Cloudflare = Omit<PlatformProxy, 'dispose' | 'env'> & { env: Env }
 
 declare module 'react-router' {
-  export interface AppLoadContext {
-    cloudflare: {
-      env: CloudflareEnvironment
-      ctx: ExecutionContext
+  interface AppLoadContext {
+    cloudflare: Cloudflare
+    hono: {
+      context: Context<HonoENV>
     }
-    env: CloudflareEnvironment
+    somethingExtra: string
   }
 }
 
-export function getLoadContext(cloudflare: AppLoadContext['cloudflare']) {
+type GetLoadContext = (args: {
+  request: Request
+  context: {
+    cloudflare: Cloudflare
+    hono: { context: Context<HonoENV> }
+  }
+}) => AppLoadContext
+
+export const getLoadContext: GetLoadContext = ({ context }) => {
   return {
-    cloudflare,
-    env: {
-      ...cloudflare.env,
-    },
+    ...context,
+    somethingExtra: 'something',
   }
 }

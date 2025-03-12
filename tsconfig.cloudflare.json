@@ -5,10 +5,10 @@
     "app/**/*",
     "app/**/.server/**/*",
     "app/**/.client/**/*",
-    "workers/**/*",
     "load-context.ts",
     "worker-configuration.d.ts",
-    "vite.config.ts"
+    "vite.config.ts",
+    "types/**/*"
   ],
   "compilerOptions": {
     "composite": true,
