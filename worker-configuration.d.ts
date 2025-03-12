@@ -2,8 +2,7 @@
 interface Env {
   DB: D1Database
   DEV: boolean
-  SESSION_SECRET: string
-  GOOGLE_CLIENT_ID: string
-  GOOGLE_CLIENT_SECRET: string
-  CLIENT_URL: string
+  VITE_CLERK_PUBLISHABLE_KEY: string
+  CLERK_PUBLISHABLE_KEY: string
+  CLERK_SECRET_KEY: string
 }
