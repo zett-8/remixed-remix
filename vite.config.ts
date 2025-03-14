@@ -1,5 +1,4 @@
 import { reactRouter } from '@react-router/dev/vite'
-import { cloudflareDevProxy } from '@react-router/dev/vite/cloudflare'
 import adapter from '@hono/vite-dev-server/cloudflare'
 import serverAdapter from 'hono-react-router-adapter/vite'
 import { defineConfig, type PluginOption } from 'vite'
@@ -28,7 +27,6 @@ export default defineConfig((_) => ({
   },
   plugins: [
     tailwindcss(),
-    cloudflareDevProxy(),
     reactRouter(),
     serverAdapter({ adapter, getLoadContext, entry: './server/index.ts' }),
     tsconfigPaths(),
