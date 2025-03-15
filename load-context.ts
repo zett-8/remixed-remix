@@ -1,5 +1,5 @@
-import { type AppLoadContext } from 'react-router'
 import type { Context } from 'hono'
+import { type AppLoadContext } from 'react-router'
 import type { PlatformProxy } from 'wrangler'
 
 type Cloudflare = Omit<PlatformProxy, 'dispose' | 'env'> & { env: Env }

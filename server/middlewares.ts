@@ -1,12 +1,12 @@
-import type { Hono } from 'hono'
-import { createFactory } from 'hono/factory'
 import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
 import { drizzle } from 'drizzle-orm/d1'
-import * as schema from '../database/schema/index'
+import type { Hono } from 'hono'
+import { compress } from 'hono/compress'
 import { contextStorage } from 'hono/context-storage'
+import { createFactory } from 'hono/factory'
 import { logger } from 'hono/logger'
 import { appendTrailingSlash } from 'hono/trailing-slash'
-import { compress } from 'hono/compress'
+import * as schema from '../database/schema/index'
 
 export const setMiddlewares = (app: Hono<HonoENV>): Hono<HonoENV> => {
   app.use(appendTrailingSlash())

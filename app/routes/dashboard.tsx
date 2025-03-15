@@ -1,5 +1,5 @@
-import { data, useLoaderData } from 'react-router'
 import { getContext } from 'hono/context-storage'
+import { data, useLoaderData } from 'react-router'
 import type { Route } from './+types/dashboard'
 
 export async function loader(_: Route.LoaderArgs) {
